@@ -28,4 +28,7 @@ public class ItemPedido {
 
     @Column(nullable = false)
     private Double precoUnitario;
+
+    //TODO
+    //Mapear com produto servico relacionamento manyToOne
 }

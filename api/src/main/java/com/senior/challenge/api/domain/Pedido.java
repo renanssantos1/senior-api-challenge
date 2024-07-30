@@ -28,4 +28,7 @@ public class Pedido {
 
     @Column(nullable = true)
     private Double desconto;
+
+    //TODO
+    //mapear com item do item do pedido relacionamento oneToMany
 }
