@@ -29,6 +29,7 @@ public class ItemPedido {
     @Column(nullable = false)
     private Double precoUnitario;
 
-    //TODO
-    //Mapear com produto servico relacionamento manyToOne
+    @ManyToOne
+    @JoinColumn(name = "produto_servico_id", nullable = false)
+    private ProdutoServico produtoServico;
 }

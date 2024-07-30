@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "pedidos")
@@ -29,6 +30,6 @@ public class Pedido {
     @Column(nullable = true)
     private Double desconto;
 
-    //TODO
-    //mapear com item do item do pedido relacionamento oneToMany
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<ItemPedido> itensPedido;
 }
