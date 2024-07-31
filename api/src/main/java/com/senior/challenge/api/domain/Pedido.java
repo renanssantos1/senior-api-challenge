@@ -33,6 +33,7 @@ public class Pedido {
     private Double desconto;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<ItemPedido> itensPedido;
 
     public Pedido(DadosCadastroPedido dadosCadastroPedido) {

@@ -32,6 +32,7 @@ public class ItemPedido {
     private ProdutoServico produtoServico;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedido;
 }
