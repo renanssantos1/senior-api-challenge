@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Table(name = "pedidos")
 @Entity(name = "Pedido")
@@ -34,22 +33,17 @@ public class Pedido {
     private Double desconto;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<ItemPedido> itensPedido;
 
-    public Pedido(DadosCadastroPedido dadosPedido) {
-        this.status = dadosPedido.status();
-        this.desconto = dadosPedido.desconto();
+    public Pedido(DadosCadastroPedido dadosCadastroPedido) {
+        this.desconto = dadosCadastroPedido.desconto();
+        this.status = dadosCadastroPedido.status();
 
-        this.itensPedido = dadosPedido.itensPedido().stream()
-                .map(dadosItem -> {
-                    ItemPedido itemPedido = new ItemPedido();
-                    itemPedido.setQuantidade(dadosItem.getQuantidade());
-                    itemPedido.setPrecoUnitario(dadosItem.getPrecoUnitario());
-                    itemPedido.setProdutoServico(dadosItem.getProdutoServico());
-                    itemPedido.setPedido(this);
-                    return itemPedido;
-                })
-                .collect(Collectors.toList());
+        if (this.itensPedido != null) {
+            for (ItemPedido item : this.itensPedido) {
+                item.setPedido(this);
+                item.setProdutoServico(item.getProdutoServico());
+            }
+        }
     }
 }

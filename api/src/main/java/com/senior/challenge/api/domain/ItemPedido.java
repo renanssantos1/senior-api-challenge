@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "itens_pedido")
@@ -20,11 +21,6 @@ public class ItemPedido {
     @Column(columnDefinition = "CHAR(36)")
     private UUID id;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "pedido_id", nullable = false)
-    private Pedido pedido;
-
     @Column(nullable = false)
     private Integer quantidade;
 
@@ -34,4 +30,8 @@ public class ItemPedido {
     @ManyToOne
     @JoinColumn(name = "produto_servico_id", nullable = false)
     private ProdutoServico produtoServico;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", nullable = false)
+    private Pedido pedido;
 }
