@@ -1,5 +1,6 @@
 package com.senior.challenge.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class ItemPedido {
     private UUID id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedido;
 
