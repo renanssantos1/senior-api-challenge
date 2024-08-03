@@ -25,7 +25,10 @@ public class PedidoService {
     public Pedido criarPedido(DadosCadastroPedido dadosCadastroPedido){
         var pedido = new Pedido(dadosCadastroPedido);
         pedido.setStatus(dadosCadastroPedido.status());
+
         pedido.setDesconto(dadosCadastroPedido.desconto());
+        pedido.setDesconto(dadosCadastroPedido.desconto());
+        pedido.setValorTotal(pedido.calcularValorTotal());
 
         List<ItemPedido> itensPedido = new ArrayList<>();
         for (ItemPedido itemDTO : dadosCadastroPedido.itensPedido()) {
