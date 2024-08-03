@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Table(name = "itens_pedido")
@@ -23,9 +22,6 @@ public class ItemPedido {
 
     @Column(nullable = false)
     private Integer quantidade;
-
-    @Column(nullable = false)
-    private Double precoUnitario;
 
     @ManyToOne
     @JoinColumn(name = "produto_servico_id", nullable = false)
