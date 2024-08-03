@@ -38,9 +38,25 @@ public class Pedido {
     @JsonManagedReference
     private List<ItemPedido> itensPedido;
 
+    @Column(nullable = false, name = "valorTotal")
+    private Double valorTotal;
+
     public Pedido(DadosCadastroPedido dados) {
         this.desconto = dados.desconto();
         this.status = dados.status();
         this.itensPedido = new ArrayList<>(dados.itensPedido());
+    }
+
+    private Double calcularValorTotalProdutos() {
+        return itensPedido.stream()
+                .filter(item -> item.getProdutoServico().getIsProduto())
+                .mapToDouble(item -> item.getQuantidade() * item.getProdutoServico().getPreco())
+                .sum();
+    }
+
+    public Double calcularValorTotal() {
+        double valorTotalProdutos = calcularValorTotalProdutos();
+        double valorDesconto = valorTotalProdutos * desconto / 100;
+        return valorDesconto - valorTotalProdutos;
     }
 }

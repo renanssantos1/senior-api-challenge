@@ -1,0 +1,5 @@
+ALTER TABLE pedidos ADD COLUMN valorTotal DOUBLE PRECISION;
+
+UPDATE pedidos SET valorTotal = 0 WHERE valorTotal IS NULL;
+
+ALTER TABLE pedidos ALTER COLUMN valorTotal SET NOT NULL;
