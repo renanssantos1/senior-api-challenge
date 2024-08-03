@@ -38,7 +38,7 @@ public class Pedido {
     @JsonManagedReference
     private List<ItemPedido> itensPedido;
 
-    @Column(nullable = false, name = "valorTotal")
+    @Column(nullable = false)
     private Double valorTotal;
 
     public Pedido(DadosCadastroPedido dados) {
@@ -56,7 +56,7 @@ public class Pedido {
 
     public Double calcularValorTotal() {
         double valorTotalProdutos = calcularValorTotalProdutos();
-        double valorDesconto = valorTotalProdutos * desconto / 100;
-        return valorDesconto - valorTotalProdutos;
+        double valorDesconto = (valorTotalProdutos * desconto) / 100;
+        return valorTotalProdutos - valorDesconto;
     }
 }
