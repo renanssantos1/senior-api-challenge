@@ -11,10 +11,10 @@ public record DadosDelhamentoPedido(
         UUID id,
         Status status,
         Double desconto,
-        List<ItemPedido> itemPedidos,
-        Double valorTotal
+        Double valorTotal,
+        List<ItemPedido> itemPedidos
 ) {
     public DadosDelhamentoPedido(Pedido pedido){
-        this(pedido.getId(), pedido.getStatus(), pedido.getDesconto(), pedido.getItensPedido(), pedido.getValorTotal());
+        this(pedido.getId(), pedido.getStatus(), pedido.getDesconto(), pedido.getValorTotal(), pedido.getItensPedido());
     }
 }

@@ -8,9 +8,10 @@ import java.util.UUID;
 public record DadosListagemPedido(
         UUID id,
         Status status,
-        Double desconto
+        Double desconto,
+        Double valorTotal
 ) {
     public DadosListagemPedido(Pedido pedido){
-        this(pedido.getId(), pedido.getStatus(), pedido.getDesconto());
+        this(pedido.getId(), pedido.getStatus(), pedido.getDesconto(), pedido.getValorTotal());
     }
 }
