@@ -1,4 +1,7 @@
-package com.senior.challenge.api.domain;
+package com.senior.challenge.api.dto;
+
+import com.senior.challenge.api.domain.Pedido;
+import com.senior.challenge.api.domain.Status;
 
 import java.util.UUID;
 

@@ -1,11 +1,12 @@
 package com.senior.challenge.api.controller;
 
-import com.senior.challenge.api.domain.DadosListagemPedido;
+import com.senior.challenge.api.dto.DadosListagemPedido;
 import com.senior.challenge.api.domain.Pedido;
 import com.senior.challenge.api.domain.Status;
 import com.senior.challenge.api.dto.DadosCadastroPedido;
 import com.senior.challenge.api.dto.DadosDelhamentoPedido;
 import com.senior.challenge.api.repository.PedidoRepository;
+import com.senior.challenge.api.service.PedidoService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,13 @@ public class PedidoController {
     @Autowired
     private PedidoRepository repository;
 
+    @Autowired
+    private PedidoService pedidoService;
+
     @PostMapping
     @Transactional
     public ResponseEntity<DadosDelhamentoPedido> criarPedido(@RequestBody @Valid DadosCadastroPedido dados){
-        Pedido pedido = new Pedido(dados);
-        repository.save(pedido);
-
+        Pedido pedido = pedidoService.criarPedido(dados);
         return ResponseEntity.ok(new DadosDelhamentoPedido(pedido));
     }
 

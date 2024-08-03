@@ -14,7 +14,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class ProdutoServico {
-
     @Id
     @GeneratedValue
     @Column(columnDefinition = "CHAR(36)")
@@ -31,8 +30,4 @@ public class ProdutoServico {
 
     @Column(nullable = false)
     private Boolean isProduto;
-
-    @OneToMany(mappedBy = "produtoServico")
-    private List<ItemPedido> itensPedido;
-
 }

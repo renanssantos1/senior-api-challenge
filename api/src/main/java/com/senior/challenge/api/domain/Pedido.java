@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "pedidos")
@@ -32,8 +34,13 @@ public class Pedido {
     @Column(nullable = true)
     private Double desconto;
 
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ItemPedido> itensPedido;
+
     public Pedido(DadosCadastroPedido dados) {
         this.desconto = dados.desconto();
         this.status = dados.status();
+        this.itensPedido = new ArrayList<>(dados.itensPedido());
     }
 }
